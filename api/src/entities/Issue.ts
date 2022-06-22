@@ -45,6 +45,9 @@ class Issue extends BaseEntity {
   @Column('varchar')
   priority: IssuePriority;
 
+  @Column('timestamp', { nullable: true })
+  dueDate: Date;
+
   @Column('double precision')
   listPosition: number;
 

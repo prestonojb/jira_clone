@@ -7,42 +7,30 @@ import { Button, Modal } from 'shared/components';
 import { formatDateTime } from 'shared/utils/dateTime';
 
 import { SectionTitle } from '../Styles';
-import {
-  ModalContents,
-  ModalTitle,
-  Actions,
-} from './Styles';
+import { ModalContents, ModalTitle, Actions } from './Styles';
 
 const propTypes = {
   issue: PropTypes.object.isRequired,
   updateIssue: PropTypes.func.isRequired,
 };
 
-const ProjectBoardIssueDetailsDueDate = () => {
-  const [dueDate, setDueDate] = useState(new Date());
-
-  const handleDueDateChange = (date) => {
-    setDueDate(date);
-  };
-
-  return (
+const ProjectBoardIssueDetailsDueDate = ({ issue, updateIssue }) => (
   <Fragment>
     <SectionTitle>Due Date</SectionTitle>
     <Modal
       testid="modal:duedate"
       width={400}
-      renderLink={modal => (
-        <Button onClick={modal.open}>{formatDateTime(dueDate)}</Button>
-      )}
+      renderLink={modal => <Button onClick={modal.open}>{formatDateTime(issue.dueDate)}</Button>}
       renderContent={modal => (
         <ModalContents>
           <ModalTitle>Due Date</ModalTitle>
-          
-          <DatePicker 
-            selected={dueDate} 
-            onChange={handleDueDateChange}
+
+          <DatePicker
+            selected={new Date(formatDateTime(issue.dueDate))}
+            onChange={date => updateIssue({ dueDate: date })}
             inline
-            showTimeSelect />
+            showTimeSelect
+          />
 
           <Actions>
             <Button variant="primary" onClick={modal.close}>
@@ -53,7 +41,7 @@ const ProjectBoardIssueDetailsDueDate = () => {
       )}
     />
   </Fragment>
-)};
+);
 
 ProjectBoardIssueDetailsDueDate.propTypes = propTypes;
 
