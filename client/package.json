@@ -73,6 +73,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
+      "prettier --write",
       "git add"
     ]
   }
