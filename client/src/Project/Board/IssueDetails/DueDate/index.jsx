@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,34 +15,47 @@ const propTypes = {
   updateIssue: PropTypes.func.isRequired,
 };
 
-const ProjectBoardIssueDetailsDueDate = ({ issue, updateIssue }) => (
-  <Fragment>
-    <SectionTitle>Due Date</SectionTitle>
-    <Modal
-      testid="modal:duedate"
-      width={400}
-      renderLink={modal => <Button onClick={modal.open}>{formatDateTime(issue.dueDate)}</Button>}
-      renderContent={modal => (
-        <ModalContents>
-          <ModalTitle>Due Date</ModalTitle>
+const ProjectBoardIssueDetailsDueDate = ({ issue, updateIssue }) => {
+  return (
+    <Fragment>
+      <SectionTitle>Due Date</SectionTitle>
+      <Modal
+        testid="modal:duedate"
+        width={400}
+        renderLink={modal => (
+          <Button onClick={modal.open}>
+            {issue.dueDate ? formatDateTime(issue.dueDate) : 'None'}
+          </Button>
+        )}
+        renderContent={modal => (
+          <ModalContents>
+            <ModalTitle>Due Date</ModalTitle>
 
-          <DatePicker
-            selected={new Date(formatDateTime(issue.dueDate))}
-            onChange={date => updateIssue({ dueDate: date })}
-            inline
-            showTimeSelect
-          />
+            <DatePicker
+              selected={issue.dueDate ? new Date(formatDateTime(issue.dueDate)) : ''}
+              onChange={date => updateIssue({ dueDate: date })}
+              inline
+              showTimeInput
+              // customTimeInput={<ExampleCustomTimeInput />}
+            />
 
-          <Actions>
-            <Button variant="primary" onClick={modal.close}>
-              Done
-            </Button>
-          </Actions>
-        </ModalContents>
-      )}
-    />
-  </Fragment>
-);
+            <Actions>
+              <Button onClick={() => handleRemoveDueDate(modal, issue, updateIssue)}>Remove</Button>
+              <Button variant="primary" onClick={modal.close}>
+                Save
+              </Button>
+            </Actions>
+          </ModalContents>
+        )}
+      />
+    </Fragment>
+  );
+};
+
+const handleRemoveDueDate = (modal, issue, updateIssue) => {
+  updateIssue({ dueDate: null });
+  modal.close();
+};
 
 ProjectBoardIssueDetailsDueDate.propTypes = propTypes;
 
