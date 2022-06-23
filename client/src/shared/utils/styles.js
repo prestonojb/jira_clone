@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import Color from 'color';
 
-import { IssueType, IssueStatus, IssuePriority } from 'shared/constants/issues';
+import { IssueLabel, IssueType, IssueStatus, IssuePriority } from 'shared/constants/issues';
 
 export const color = {
   primary: '#0052cc', // Blue
@@ -54,6 +54,18 @@ export const issueStatusBackgroundColors = {
   [IssueStatus.INPROGRESS]: color.primary,
   [IssueStatus.SELECTED]: color.backgroundMedium,
   [IssueStatus.DONE]: color.success,
+};
+
+export const issueLabelColors = {
+  [IssueLabel.MODULE1]: '#fff',
+  [IssueLabel.MODULE2]: '#fff',
+  [IssueLabel.MODULE3]: '#fff',
+};
+
+export const issueLabelBackgroundColors = {
+  [IssueLabel.MODULE1]: color.primary,
+  [IssueLabel.MODULE2]: color.warning,
+  [IssueLabel.MODULE3]: color.success,
 };
 
 export const sizes = {

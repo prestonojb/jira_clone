@@ -14,6 +14,7 @@ import Comments from './Comments';
 import Status from './Status';
 import AssigneesReporter from './AssigneesReporter';
 import Priority from './Priority';
+import Label from './Label';
 import DueDate from './DueDate';
 import EstimateTracking from './EstimateTracking';
 import Dates from './Dates';
@@ -82,6 +83,7 @@ const ProjectBoardIssueDetails = ({
           <Status issue={issue} updateIssue={updateIssue} />
           <AssigneesReporter issue={issue} updateIssue={updateIssue} projectUsers={projectUsers} />
           <Priority issue={issue} updateIssue={updateIssue} />
+          <Label issue={issue} updateIssue={updateIssue} />
           <DueDate issue={issue} updateIssue={updateIssue} />
           <EstimateTracking issue={issue} updateIssue={updateIssue} />
           <Dates issue={issue} />

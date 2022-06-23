@@ -11,6 +11,12 @@ export const IssueStatus = {
   DONE: 'done',
 };
 
+export const IssueLabel = {
+  MODULE1: 'module1',
+  MODULE2: 'module2',
+  MODULE3: 'module3',
+};
+
 export const IssuePriority = {
   HIGHEST: '5',
   HIGH: '4',
@@ -38,4 +44,10 @@ export const IssuePriorityCopy = {
   [IssuePriority.MEDIUM]: 'Medium',
   [IssuePriority.LOW]: 'Low',
   [IssuePriority.LOWEST]: 'Lowest',
+};
+
+export const IssueLabelCopy = {
+  [IssueLabel.MODULE1]: 'Module 1',
+  [IssueLabel.MODULE2]: 'Module 2',
+  [IssueLabel.MODULE3]: 'Module 3',
 };
