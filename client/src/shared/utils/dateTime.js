@@ -14,3 +14,5 @@ export const formatDateTimeForAPI = date =>
     : date;
 
 export const formatDateTimeConversational = date => (date ? moment(date).fromNow() : date);
+
+export const isBefore = date => (date ? moment(date).isBefore() : false);
