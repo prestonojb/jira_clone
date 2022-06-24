@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { Icon, Select } from 'shared/components';
@@ -39,7 +39,10 @@ const ProjectBoardIssueDetailsLabel = ({ issue, updateIssue }) => {
           </Label>
         )}
         renderOption={({ value: issueLabel, label }) => <Label color={issueLabel}>{label}</Label>}
-        onChange={labels => updateIssue({ labels })}
+        onChange={labels => {
+          labels.sort();
+          updateIssue({ labels });
+        }}
       />
     </Fragment>
   );
