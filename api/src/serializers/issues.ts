@@ -8,6 +8,8 @@ export const issuePartial = (issue: Issue): Partial<Issue> =>
     'title',
     'type',
     'status',
+    'dueDate',
+    'labels',
     'priority',
     'listPosition',
     'createdAt',

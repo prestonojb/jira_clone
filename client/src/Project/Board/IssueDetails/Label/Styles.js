@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { issueLabelColors, issueLabelBackgroundColors, mixin, color } from 'shared/utils/styles';
+import { issueLabelColors, issueLabelBackgroundColors, mixin } from 'shared/utils/styles';
 
 export const Label = styled.div`
   text-transform: uppercase;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { color, font, mixin } from 'shared/utils/styles';
-import { Avatar } from 'shared/components';
+import { Avatar, Button } from 'shared/components';
 
 export const IssueLink = styled(Link)`
   display: block;
@@ -53,4 +53,10 @@ export const Assignees = styled.div`
 export const AssigneeAvatar = styled(Avatar)`
   margin-left: -2px;
   box-shadow: 0 0 0 2px #fff;
+`;
+
+export const StyledDueDateButton = styled(Button)`
+  padding: 0 4px;
+  font-size: 11px;
+  height: 18px;
 `;

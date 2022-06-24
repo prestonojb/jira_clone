@@ -4,8 +4,17 @@ import { useRouteMatch } from 'react-router-dom';
 import { Draggable } from 'react-beautiful-dnd';
 
 import { IssueTypeIcon, IssuePriorityIcon } from 'shared/components';
+import { isBefore, formatDateTime } from 'shared/utils/dateTime';
 
-import { IssueLink, Issue, Title, Bottom, Assignees, AssigneeAvatar } from './Styles';
+import {
+  IssueLink,
+  Issue,
+  Title,
+  Bottom,
+  Assignees,
+  AssigneeAvatar,
+  StyledDueDateButton,
+} from './Styles';
 
 const propTypes = {
   projectUsers: PropTypes.array.isRequired,
@@ -46,6 +55,11 @@ const ProjectBoardListIssue = ({ projectUsers, issue, index }) => {
                 ))}
               </Assignees>
             </Bottom>
+            {issue.dueDate && (
+              <StyledDueDateButton variant={isBefore(issue.dueDate) ? 'danger' : 'secondary'}>
+                {formatDateTime(issue.dueDate)}
+              </StyledDueDateButton>
+            )}
           </Issue>
         </IssueLink>
       )}
