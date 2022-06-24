@@ -5,6 +5,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import { IssueTypeIcon, IssuePriorityIcon } from 'shared/components';
 import { isBefore, formatDateTime } from 'shared/utils/dateTime';
+import { IssueLabelCopy } from 'shared/constants/issues';
 
 import {
   IssueLink,
@@ -14,6 +15,7 @@ import {
   Assignees,
   AssigneeAvatar,
   StyledDueDateButton,
+  Label,
 } from './Styles';
 
 const propTypes = {
@@ -38,6 +40,15 @@ const ProjectBoardListIssue = ({ projectUsers, issue, index }) => {
           {...provided.dragHandleProps}
         >
           <Issue isBeingDragged={snapshot.isDragging && !snapshot.isDropAnimating}>
+            {issue.labels && (
+              <div>
+                {issue.labels.map(issueLabel => (
+                  <Label key={issueLabel} color={issueLabel}>
+                    {IssueLabelCopy[issueLabel]}
+                  </Label>
+                ))}
+              </div>
+            )}
             <Title>{issue.title}</Title>
             <Bottom>
               <div>

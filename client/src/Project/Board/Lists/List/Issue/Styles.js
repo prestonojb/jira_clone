@@ -1,7 +1,13 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { color, font, mixin } from 'shared/utils/styles';
+import {
+  color,
+  font,
+  mixin,
+  issueLabelColors,
+  issueLabelBackgroundColors,
+} from 'shared/utils/styles';
 import { Avatar, Button } from 'shared/components';
 
 export const IssueLink = styled(Link)`
@@ -58,5 +64,14 @@ export const AssigneeAvatar = styled(Avatar)`
 export const StyledDueDateButton = styled(Button)`
   padding: 0 4px;
   font-size: 11px;
+  height: 18px;
+`;
+
+export const Label = styled.div`
+  ${props => mixin.tag(issueLabelBackgroundColors[props.color], issueLabelColors[props.color])}
+  ${font.size(11)}
+  transition: all 0.1s;
+  margin: 0 2px 2px 0;
+  padding: 0 4px;
   height: 18px;
 `;
