@@ -20,9 +20,9 @@ const propTypes = {
 };
 
 const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilters }) => {
-  const { searchTerm, userIds, myOnly, recent } = filters;
+  const { searchTerm, userIds, myOnly, recent, showPastDue } = filters;
 
-  const areFiltersCleared = !searchTerm && userIds.length === 0 && !myOnly && !recent;
+  const areFiltersCleared = !searchTerm && userIds.length === 0 && !myOnly && !recent && !showPastDue;
 
   return (
     <Filters data-testid="board-filters">
@@ -55,6 +55,13 @@ const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilte
         onClick={() => mergeFilters({ recent: !recent })}
       >
         Recently Updated
+      </StyledButton>
+      <StyledButton
+        variant="empty"
+        isActive={showPastDue}
+        onClick={() => mergeFilters({ showPastDue: !showPastDue })}
+      >
+        Show Past Due
       </StyledButton>
       {!areFiltersCleared && (
         <ClearAll onClick={() => mergeFilters(defaultFilters)}>Clear all</ClearAll>
