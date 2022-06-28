@@ -21,21 +21,16 @@ const AboutTooltip = tooltipProps => (
           back-end.
         </FeedbackParagraph>
 
-        <FeedbackParagraph>
-          {'Read more on my website or reach out via '}
-          <a href="mailto:ivor@codetree.co">
-            <strong>ivor@codetree.co</strong>
-          </a>
-        </FeedbackParagraph>
-
-        <a href="https://getivor.com/" target="_blank" rel="noreferrer noopener">
+        {/* <a href="https://getivor.com/" target="_blank" rel="noreferrer noopener">
           <Button variant="primary">Visit Website</Button>
-        </a>
+        </a> */}
 
-        <a href="https://github.com/oldboyxx/jira_clone" target="_blank" rel="noreferrer noopener">
-          <Button style={{ marginLeft: 10 }} icon="github">
-            Github Repo
-          </Button>
+        <a
+          href="https://github.com/prestonojb/jira_clone"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Button icon="github">Github Repo</Button>
         </a>
       </FeedbackDropdown>
     )}
