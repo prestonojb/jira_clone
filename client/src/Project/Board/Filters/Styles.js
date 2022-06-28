@@ -1,7 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { color, font, mixin } from 'shared/utils/styles';
-import { InputDebounced, Avatar, Button } from 'shared/components';
+import {
+  color,
+  font,
+  mixin,
+  issueLabelColors,
+  issueLabelBackgroundColors,
+} from 'shared/utils/styles';
+import { InputDebounced, Avatar, Button, Select } from 'shared/components';
 
 export const Filters = styled.div`
   display: flex;
@@ -52,4 +58,25 @@ export const ClearAll = styled.div`
   &:hover {
     color: ${color.textMedium};
   }
+`;
+
+export const Label = styled.div`
+  text-transform: uppercase;
+  transition: all 0.1s;
+  ${props => mixin.tag(issueLabelBackgroundColors[props.color], issueLabelColors[props.color])}
+  ${props =>
+    props.isValue &&
+    css`
+      margin: 0 10px 5px 0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.1s;
+      &:hover {
+        background: ${mixin.lighten(issueLabelBackgroundColors[props.color], 0.15)};
+      }
+    `}
+`;
+
+export const StyledSelect = styled(Select)`
+  margin-left: 6px;
 `;

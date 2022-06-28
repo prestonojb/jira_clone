@@ -2,13 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { xor } from 'lodash';
 
+import { Button } from 'shared/components';
+import { IssueLabel, IssueLabelCopy } from 'shared/constants/issues';
+
 import {
   Filters,
   SearchInput,
+  Label,
   Avatars,
   AvatarIsActiveBorder,
   StyledAvatar,
   StyledButton,
+  StyledSelect,
   ClearAll,
 } from './Styles';
 
@@ -20,9 +25,10 @@ const propTypes = {
 };
 
 const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilters }) => {
-  const { searchTerm, userIds, myOnly, recent, showPastDue } = filters;
+  const { searchTerm, userIds, myOnly, recent, showPastDue, labels } = filters;
 
-  const areFiltersCleared = !searchTerm && userIds.length === 0 && !myOnly && !recent && !showPastDue;
+  const areFiltersCleared =
+    !searchTerm && userIds.length === 0 && !myOnly && !recent && !showPastDue;
 
   return (
     <Filters data-testid="board-filters">
@@ -63,6 +69,22 @@ const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilte
       >
         Show Past Due
       </StyledButton>
+      <StyledSelect
+        isMulti
+        isMinifiedMulti
+        variant="empty"
+        dropdownWidth={343}
+        placeholder="Labels"
+        name="labels"
+        value={labels}
+        options={Object.values(IssueLabel).map(issueLabel => ({
+          value: issueLabel,
+          label: IssueLabelCopy[issueLabel],
+        }))}
+        renderValue={() => <Button variant="empty">Labels {labels.length}</Button>}
+        renderOption={({ value: issueLabel, label }) => <Label color={issueLabel}>{label}</Label>}
+        onChange={selectedLabels => mergeFilters({ labels: selectedLabels })}
+      />
       {!areFiltersCleared && (
         <ClearAll onClick={() => mergeFilters(defaultFilters)}>Clear all</ClearAll>
       )}

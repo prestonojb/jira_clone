@@ -131,6 +131,8 @@ export const Option = styled.div`
   padding: 8px 14px;
   word-break: break-word;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   &:last-of-type {
     margin-bottom: 8px;
   }
@@ -142,4 +144,35 @@ export const Option = styled.div`
 export const OptionsNoResults = styled.div`
   padding: 5px 15px 15px;
   color: ${color.textLight};
+`;
+
+export const MinifiedCheckbox = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border: 1px solid ${color.borderLight};
+  margin-right: 8px;
+  color: #fff;
+
+  ${props =>
+    props.checked &&
+    css`
+      background-color: ${color.primaryLight};
+      border-color: ${color.primaryLight};
+      &:before {
+        content: '✓';
+        font-family: 'jira' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        ${font.size(14)}
+      }
+    `}
 `;

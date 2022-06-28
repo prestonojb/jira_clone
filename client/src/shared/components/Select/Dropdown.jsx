@@ -4,7 +4,15 @@ import { uniq } from 'lodash';
 
 import { KeyCodes } from 'shared/constants/keyCodes';
 
-import { ClearIcon, Dropdown, DropdownInput, Options, Option, OptionsNoResults } from './Styles';
+import {
+  ClearIcon,
+  Dropdown,
+  DropdownInput,
+  MinifiedCheckbox,
+  Options,
+  Option,
+  OptionsNoResults,
+} from './Styles';
 
 const propTypes = {
   dropdownWidth: PropTypes.number,
@@ -18,6 +26,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onCreate: PropTypes.func,
   isMulti: PropTypes.bool.isRequired,
+  isMinifiedMulti: PropTypes.bool.isRequired,
   withClearValue: PropTypes.bool.isRequired,
   propsRenderOption: PropTypes.func,
 };
@@ -41,6 +50,7 @@ const SelectDropdown = ({
   onChange,
   onCreate,
   isMulti,
+  isMinifiedMulti,
   withClearValue,
   propsRenderOption,
 }) => {
@@ -48,24 +58,42 @@ const SelectDropdown = ({
 
   const $optionsRef = useRef();
 
-  useLayoutEffect(() => {
-    const setFirstOptionAsActive = () => {
-      const $active = getActiveOptionNode();
-      if ($active) $active.classList.remove(activeOptionClass);
+  // useLayoutEffect(() => {
+  //   const setFirstOptionAsActive = () => {
+  //     const $active = getActiveOptionNode();
+  //     if ($active) $active.classList.remove(activeOptionClass);
 
-      if ($optionsRef.current.firstElementChild) {
-        $optionsRef.current.firstElementChild.classList.add(activeOptionClass);
-      }
-    };
-    setFirstOptionAsActive();
-  });
+  //     if ($optionsRef.current.firstElementChild) {
+  //       $optionsRef.current.firstElementChild.classList.add(activeOptionClass);
+  //     }
+  //   };
+  //   setFirstOptionAsActive();
+  // });
 
   const selectOptionValue = optionValue => {
-    deactivateDropdown();
+    if (!isMinifiedMulti) {
+      deactivateDropdown();
+    }
     if (isMulti) {
       onChange(uniq([...value, optionValue]));
     } else {
       onChange(optionValue);
+    }
+  };
+
+  const deselectOptionValue = optionValue => {
+    if (isMulti) {
+      onChange(value.filter(selected => selected !== optionValue));
+    } else {
+      onChange('');
+    }
+  };
+
+  const handleMinifiedMultiChange = optionValue => {
+    if (value.includes(optionValue)) {
+      deselectOptionValue(optionValue);
+    } else {
+      selectOptionValue(optionValue);
     }
   };
 
@@ -78,7 +106,7 @@ const SelectDropdown = ({
   };
 
   const clearOptionValues = () => {
-    $inputRef.current.value = '';
+    setSearchValue('');
     $inputRef.current.focus();
     onChange(isMulti ? [] : null);
   };
@@ -167,9 +195,14 @@ const SelectDropdown = ({
   const removeSelectedOptionsMulti = opts => opts.filter(option => !value.includes(option.value));
   const removeSelectedOptionsSingle = opts => opts.filter(option => value !== option.value);
 
-  const filteredOptions = isMulti
-    ? removeSelectedOptionsMulti(optionsFilteredBySearchValue)
-    : removeSelectedOptionsSingle(optionsFilteredBySearchValue);
+  const filteredOptions = (() => {
+    if (isMulti) {
+      return isMinifiedMulti
+        ? optionsFilteredBySearchValue
+        : removeSelectedOptionsMulti(optionsFilteredBySearchValue);
+    }
+    return removeSelectedOptionsSingle(optionsFilteredBySearchValue);
+  })();
 
   const isSearchValueInOptions = options.map(option => option.label).includes(searchValue);
   const isOptionCreatable = onCreate && searchValue && !isSearchValueInOptions;
@@ -180,6 +213,7 @@ const SelectDropdown = ({
         type="text"
         placeholder="Search"
         ref={$inputRef}
+        value={searchValue}
         autoFocus
         onKeyDown={handleInputKeyDown}
         onChange={event => setSearchValue(event.target.value)}
@@ -188,17 +222,32 @@ const SelectDropdown = ({
       {!isValueEmpty && withClearValue && <ClearIcon type="close" onClick={clearOptionValues} />}
 
       <Options ref={$optionsRef}>
-        {filteredOptions.map(option => (
-          <Option
-            key={option.value}
-            data-select-option-value={option.value}
-            data-testid={`select-option:${option.label}`}
-            onMouseEnter={handleOptionMouseEnter}
-            onClick={() => selectOptionValue(option.value)}
-          >
-            {propsRenderOption ? propsRenderOption(option) : option.label}
-          </Option>
-        ))}
+        {!isMinifiedMulti &&
+          filteredOptions.map(option => (
+            <Option
+              key={option.value}
+              data-select-option-value={option.value}
+              data-testid={`select-option:${option.label}`}
+              onMouseEnter={handleOptionMouseEnter}
+              onClick={() => selectOptionValue(option.value)}
+            >
+              {propsRenderOption ? propsRenderOption(option) : option.label}
+            </Option>
+          ))}
+
+        {isMinifiedMulti &&
+          filteredOptions.map(option => (
+            <Option
+              key={option.value}
+              data-select-option-value={option.value}
+              data-testid={`select-option:${option.label}`}
+              onMouseEnter={handleOptionMouseEnter}
+              onClick={() => handleMinifiedMultiChange(option.value)}
+            >
+              <MinifiedCheckbox checked={value.includes(option.value)} />
+              {propsRenderOption ? propsRenderOption(option) : option.label}
+            </Option>
+          ))}
 
         {isOptionCreatable && (
           <Option

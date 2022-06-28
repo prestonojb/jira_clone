@@ -22,6 +22,7 @@ const defaultFilters = {
   myOnly: false,
   recent: false,
   showPastDue: false,
+  labels: [],
 };
 
 const ProjectBoard = ({ project, fetchProject, updateLocalProjectIssues }) => {

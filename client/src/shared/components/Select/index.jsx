@@ -29,6 +29,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onCreate: PropTypes.func,
   isMulti: PropTypes.bool,
+  isMinifiedMulti: PropTypes.bool,
   withClearValue: PropTypes.bool,
   renderValue: PropTypes.func,
   renderOption: PropTypes.func,
@@ -45,6 +46,7 @@ const defaultProps = {
   invalid: false,
   onCreate: undefined,
   isMulti: false,
+  isMinifiedMulti: false,
   withClearValue: true,
   renderValue: undefined,
   renderOption: undefined,
@@ -63,6 +65,7 @@ const Select = ({
   onChange,
   onCreate,
   isMulti,
+  isMinifiedMulti,
   withClearValue,
   renderValue: propsRenderValue,
   renderOption: propsRenderOption,
@@ -148,13 +151,13 @@ const Select = ({
         data-testid={name ? `select:${name}` : 'select'}
         onClick={activateDropdown}
       >
-        {isValueEmpty && <Placeholder>{placeholder}</Placeholder>}
+        {isValueEmpty && !isMinifiedMulti && <Placeholder>{placeholder}</Placeholder>}
 
         {!isValueEmpty && !isMulti && propsRenderValue
           ? propsRenderValue({ value })
           : getOptionLabel(value)}
 
-        {!isValueEmpty && isMulti && (
+        {!isValueEmpty && isMulti && !isMinifiedMulti && (
           <ValueMulti variant={variant}>
             {value.map(optionValue =>
               propsRenderValue ? (
@@ -176,7 +179,9 @@ const Select = ({
           </ValueMulti>
         )}
 
-        {(!isMulti || isValueEmpty) && variant !== 'empty' && (
+        {isMulti && isMinifiedMulti && propsRenderValue()}
+
+        {(!isMulti || isValueEmpty) && !isMinifiedMulti && variant !== 'empty' && (
           <ChevronIcon type="chevron-down" top={1} />
         )}
       </ValueContainer>
@@ -195,6 +200,7 @@ const Select = ({
           onChange={handleChange}
           onCreate={onCreate}
           isMulti={isMulti}
+          isMinifiedMulti={isMinifiedMulti}
           withClearValue={withClearValue}
           propsRenderOption={propsRenderOption}
         />

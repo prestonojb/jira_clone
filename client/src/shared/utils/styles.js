@@ -26,6 +26,8 @@ export const color = {
   borderLightest: '#dfe1e6',
   borderLight: '#C1C7D0',
   borderInputFocus: '#4c9aff',
+
+  primaryLight: '#4FADE6',
 };
 
 export const issueTypeColors = {
@@ -187,12 +189,19 @@ export const mixin = {
     border-radius: 4px;
     cursor: pointer;
     user-select: none;
-    color: ${colorValue};
     background: ${background};
+    color: ${colorValue};
     ${font.bold}
     ${font.size(12)}
     i {
       margin-left: 4px;
     }
+  `,
+  badge: (background = color.primary, colorValue = '#fff') => css`
+    display: inline-flex;
+    border-radius: 100%;
+    background: ${background};
+    color: ${colorValue};
+    ${font.size(12)}
   `,
 };
