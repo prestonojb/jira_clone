@@ -28,7 +28,12 @@ const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilte
   const { searchTerm, userIds, myOnly, recent, showPastDue, labels } = filters;
 
   const areFiltersCleared =
-    !searchTerm && userIds.length === 0 && !myOnly && !recent && !showPastDue;
+    !searchTerm &&
+    userIds.length === 0 &&
+    !myOnly &&
+    !recent &&
+    !showPastDue &&
+    labels.length === 0;
 
   return (
     <Filters data-testid="board-filters">

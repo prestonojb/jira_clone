@@ -51,7 +51,7 @@ const ProjectBoardList = ({ status, project, filters, currentUserId }) => {
 };
 
 const filterIssues = (projectIssues, filters, currentUserId) => {
-  const { searchTerm, userIds, myOnly, recent, showPastDue } = filters;
+  const { searchTerm, userIds, myOnly, recent, showPastDue, labels } = filters;
   let issues = projectIssues;
 
   if (searchTerm) {
@@ -68,6 +68,14 @@ const filterIssues = (projectIssues, filters, currentUserId) => {
   }
   if (!showPastDue) {
     issues = issues.filter(issue => !isBefore(issue.dueDate));
+  }
+  if (labels.length > 0) {
+    issues = issues.filter(
+      issue =>
+        issue.labels !== null &&
+        issue.labels.length > 0 &&
+        issue.labels.some(issueLabel => labels.includes(issueLabel)),
+    );
   }
   return issues;
 };
