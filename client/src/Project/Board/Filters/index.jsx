@@ -60,13 +60,13 @@ const ProjectBoardFilters = ({ projectUsers, defaultFilters, filters, mergeFilte
       >
         Only My Issues
       </StyledButton>
-      <StyledButton
+      {/* <StyledButton
         variant="empty"
         isActive={recent}
         onClick={() => mergeFilters({ recent: !recent })}
       >
         Recently Updated
-      </StyledButton>
+      </StyledButton> */}
       <StyledButton
         variant="empty"
         isActive={showPastDue}
