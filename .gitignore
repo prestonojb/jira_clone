@@ -8,5 +8,5 @@
 **/.env
 
 # production
-**/build
+# **/build
 **/npm-debug.log*
