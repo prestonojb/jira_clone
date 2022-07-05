@@ -9,7 +9,6 @@
     "start:production": "pm2 start --name 'jira_api' node -- -r ./tsconfig-paths.js build/index.js",
     "tsc": "./node_modules/typescript/bin/tsc",
     "build": "cd src && npm run tsc",
-    "postinstall": "npm run build",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
@@ -24,8 +23,8 @@
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "striptags": "^3.1.1",
-    "tsc": "^2.0.4",
-    "typeorm": "^0.2.45"
+    "typeorm": "^0.2.45",
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
@@ -47,8 +46,7 @@
     "nodemon": "^2.0.0",
     "prettier": "^1.19.1",
     "ts-node": "^8.5.2",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.2"
+    "tsconfig-paths": "^3.9.0"
   },
   "_moduleDirectories": [
     "src"
