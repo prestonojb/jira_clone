@@ -33,7 +33,7 @@
     "@types/jsonapi-serializer": "^3.6.2",
     "@types/jsonwebtoken": "^8.3.5",
     "@types/lodash": "^4.14.149",
-    "@types/node": "^12.12.11",
+    "@types/node": "^12.20.55",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
     "cross-env": "^6.0.3",
