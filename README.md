@@ -1,7 +1,5 @@
 <h1 align="center">A simplified Jira clone built with React and Node</h1>
 
-<div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>
-
 ![Tech logos](https://i.ibb.co/DVFj8PL/tech-icons.jpg)
 
 ![App screenshot](https://i.ibb.co/W3qVvCn/jira-optimized.jpg)
@@ -10,7 +8,7 @@
 
 Forked JIRA clone with newly introduced due date and labelling features and filters.
 
-Original Repo can be found with <a href="https://github.com/oldboyxx/jira_clone">this link</a>
+Original Repo can be found with <a href="https://github.com/oldboyxx/jira_clone">this link</a>.
 
 ## Features
 
