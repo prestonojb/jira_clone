@@ -2,28 +2,21 @@
 
 <div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>
 
-<h3 align="center">
-  <a href="https://jira.ivorreic.com/">Visit the live app</a> |
-  <a href="https://github.com/oldboyxx/jira_clone/tree/master/client">View client</a> |
-  <a href="https://github.com/oldboyxx/jira_clone/tree/master/api">View API</a>
-</h3>
-
 ![Tech logos](https://i.ibb.co/DVFj8PL/tech-icons.jpg)
 
 ![App screenshot](https://i.ibb.co/W3qVvCn/jira-optimized.jpg)
 
-## What is this and who is it for 🤷‍♀️
+## What is this 🤷‍♀️
 
-I do React consulting and this is a showcase product I've built in my spare time. It's a very good example of modern, real-world React codebase.
+Forked JIRA clone with newly introduced due date and labelling features and filters.
 
-There are many showcase/example React projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to React developers of all skill levels while still being _relatively_ easy to understand.
+Original Repo can be found with <a href="https://github.com/oldboyxx/jira_clone">this link</a>
 
 ## Features
 
-- Proven, scalable, and easy to understand project structure
-- Written in modern React, only functional components with hooks
+- Written in modern React (functional components with hooks)
 - A variety of custom light-weight UI components such as datepicker, modal, various form elements etc
-- Simple local React state management, without redux, mobx, or similar
+- Simple local React state management (useContext native hook)
 - Custom webpack setup, without create-react-app or similar
 - Client written in Babel powered JavaScript
 - API written in TypeScript and using TypeORM
@@ -63,19 +56,3 @@ Not all components have properly defined [aria attributes](https://developer.moz
 ### Unit/Integration tests 🧪
 
 Both Client and API are currently tested through [end-to-end Cypress tests](https://github.com/oldboyxx/jira_clone/tree/master/client/cypress/integration). That's good enough for a relatively simple application such as this, even if it was a real product. However, as the app grows in complexity, it might be wise to start writing additional unit/integration tests.
-
-## Contributing
-
-I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
-
-## License
-
-[MIT](https://opensource.org/licenses/MIT)
-
-<hr>
-
-<h3>
-  <a href="https://jira.ivorreic.com/">Visit the live app</a> |
-  <a href="https://github.com/oldboyxx/jira_clone/tree/master/client">View client</a> |
-  <a href="https://github.com/oldboyxx/jira_clone/tree/master/api">View API</a>
-</h3>
