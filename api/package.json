@@ -7,8 +7,9 @@
     "start": "nodemon --exec ts-node --files src/index.ts",
     "start:test": "cross-env NODE_ENV='test' DB_DATABASE='jira_test' npm start",
     "start:production": "pm2 start --name 'jira_api' node -- -r ./tsconfig-paths.js build/index.js",
-    "tsc": "tsc",
+    "tsc": "./node_modules/typescript/bin/tsc",
     "build": "cd src && npm run tsc",
+    "postinstall": "npm run build",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
