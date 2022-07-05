@@ -1,0 +1,1 @@
+{"version":3,"file":"issues.js","sourceRoot":"","sources":["../../src/serializers/issues.ts"],"names":[],"mappings":";;;AAAA,mCAA8B;AAIvB,MAAM,YAAY,GAAG,CAAC,KAAY,EAAkB,EAAE,CAC3D,IAAA,aAAI,EAAC,KAAK,EAAE;IACV,IAAI;IACJ,OAAO;IACP,MAAM;IACN,QAAQ;IACR,SAAS;IACT,QAAQ;IACR,UAAU;IACV,cAAc;IACd,WAAW;IACX,WAAW;IACX,SAAS;CACV,CAAC,CAAC;AAbQ,QAAA,YAAY,gBAapB"}
